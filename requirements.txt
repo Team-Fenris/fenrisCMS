@@ -1,0 +1,5 @@
+# The contents in this file specifies which dependencies are needed
+# to make the package run successfully
+psycopg2
+Django
+djangorestframework
