@@ -8,14 +8,18 @@ class Hero(models.Model):
     alias = models.CharField(max_length=60)
 
     def __str__(self):
-      return self.name
+
+        return self.name
+
 
 class Pcap(models.Model):
     direction = models.CharField(max_length=25, null=True)
 #    dst_addr = models.CharField(max_length=15, null=True)
-    dst_addr = models.GenericIPAddressField(null=False)
+
+    dst_addr = models.GenericIPAddressField(null=False, default='255.254.253.252')
 #    dst_port = models.CharField(max_length=5, null=True)
-    dst_port = models.IntegerField(max_length=5, null=False)
+    dst_port = models.IntegerField(max_length=5, null=False, default=0)
+
     icmpv4 = models.CharField(max_length=50, null=True)
     icmpv6 = models.CharField(max_length=50, null=True)
     interface = models.CharField(max_length=5, null=True) # TODO: INT?
@@ -23,22 +27,24 @@ class Pcap(models.Model):
     ##### IPV4
     ipv4_chksum = models.IntegerField(max_length=10, null=True)
     ipv4_df = models.BooleanField(null=False, default=False)
-    ipv4_diff_serv = models.PositiveSmallIntegerField(max_length=3)
-    ipv4_ecn = models.PositiveSmallIntegerField(max_length=2)
-    ipv4_evil = models.BooleanField(default=False)
-    ipv4_flags = models.PositiveSmallIntegerField(max_length=3)
-    ipv4_frag_offset = models.PositiveSmallIntegerField(max_length=2,default=0)
-    ipv4_hdr_len = models.PositiveSmallIntegerField(max_length=3,default=0)
-    ipv4_header_len = models.PositiveSmallIntegerField(max_length=4)
-    ipv4_ident = models.PositiveSmallIntegerField(max_length=2,default=0)
-    ipv4_mf = models.BooleanField(default=False)
+
+    ipv4_diff_serv = models.PositiveSmallIntegerField(max_length=3, null=True)
+    ipv4_ecn = models.PositiveSmallIntegerField(max_length=2, null=True)
+    ipv4_evil = models.BooleanField(default=False, null=True)
+    ipv4_flags = models.PositiveSmallIntegerField(max_length=3, null=True)
+    ipv4_frag_offset = models.PositiveSmallIntegerField(max_length=2,default=0, null=True)
+    ipv4_hdr_len = models.PositiveSmallIntegerField(max_length=3,default=0, null=True)
+    ipv4_header_len = models.PositiveSmallIntegerField(max_length=4, null=True)
+    ipv4_ident = models.PositiveSmallIntegerField(max_length=2,default=0, null=True)
+    ipv4_mf = models.BooleanField(default=False, null=True)
     ipv4_packet_len = models.IntegerField(max_length=5, null=True)
-    ipv4_raw = models.TextField(max_length=255)
+    ipv4_raw = models.TextField(max_length=255, null=True)
     ipv4_reserved = models.BooleanField(default=False)
-    ipv4_src_addr = models.GenericIPAddressField(null=False)
-    ipv4_tos = models.PositiveSmallIntegerField(max_length=4)
-    ipv4_ttl = models.PositiveSmallIntegerField(max_length=3)
-#   ipv6 = models.CharField(max_length=255, null=True) # NO IPv6
+    ipv4_src_addr = models.GenericIPAddressField(null=False, default='255.254.253.252')
+    ipv4_tos = models.PositiveSmallIntegerField(max_length=4, null=True)
+    ipv4_ttl = models.PositiveSmallIntegerField(max_length=3, null=True)
+#    ipv6 = models.CharField(max_length=255, null=True) # NO IPv6
+
     is_inbound = models.CharField(max_length=5, null=True)
     is_loopback = models.CharField(max_length=5, null=True)
     is_outbound = models.CharField(max_length=5, null=True)
@@ -87,4 +93,6 @@ class Pcap(models.Model):
     wd_addr = models.CharField(max_length=255, null=True)
 
     def __str__(self):
+
         return self.dst_addr
+

@@ -10,3 +10,4 @@ def index(request):
 
 def details(request):
     return render(request, 'details.html')
+

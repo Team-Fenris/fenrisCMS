@@ -18,8 +18,24 @@ class PcapSerializer(serializers.HyperlinkedModelSerializer):
             'icmpv4',
             'icmpv6',
             'interface',
-            # 'ipv4',
-            # 'ipv6',
+
+            'ipv4_chksum',
+            'ipv4_df',
+            'ipv4_diff_serv',
+            'ipv4_ecn',
+            'ipv4_evil',
+            'ipv4_flags',
+            'ipv4_frag_offset',
+            'ipv4_header_len',
+            'ipv4_ident',
+            'ipv4_mf',
+            'ipv4_packet_len',
+            'ipv4_raw',
+            'ipv4_reserved',
+            'ipv4_src_addr',
+            'ipv4_tos',
+            'ipv4_ttl',
+
             'is_inbound',
             'is_loopback',
             'is_outbound',
@@ -27,7 +43,6 @@ class PcapSerializer(serializers.HyperlinkedModelSerializer):
             'raw',
             'src_addr',
             'src_port',
-            'tcp',
-            'udp',
+
             'wd_addr'
         )

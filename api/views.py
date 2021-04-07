@@ -15,9 +15,27 @@ class PcapViewSet(viewsets.ModelViewSet):
     queryset = Pcap.objects.all().order_by('dst_addr')
     serializer_class = PcapSerializer
 
+
+# class AddPcapView(viewsets.ModelViewSet):
+#     form_class = PcapForm
+#     template_name = 'add_pcap.html'
+
+#     def get(self, request; *args, **kwargs):
+#         form = self.form_class(initial=self.initial)
+#         return render(request, self.template_name, {'form': form})
+# #        return HttpResponse('result')
+
+#     def post(self, request, *args, **kwargs):
+#         form = self.form.class(request.POST)
+#         if form.is_valid():
+#             return HttpResponseRedirect('/success/')
+
+#         return render(request, self.template_name, {'form': form})
+
 def upload(request):
     if request.method == 'POST':
         uploaded_file = request.FILES['json']
         print(uploaded_file.name)
         print(uploaded_file.size)
     return render(request, 'dashboard.html')
+

@@ -6,5 +6,5 @@ urlpatterns = [
     path('dashboard/', views.index, name='index'),
     path('dashboard/details/', views.details),
 
-
 ]
+
