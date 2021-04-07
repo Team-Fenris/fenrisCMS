@@ -3,3 +3,4 @@
 psycopg2
 Django
 djangorestframework
+django-datatables-view

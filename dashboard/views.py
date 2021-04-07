@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-#from .models import *
+from .models import *
 from django.conf import settings
+
 
 
 def index(request):
