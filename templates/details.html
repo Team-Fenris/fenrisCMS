@@ -1,8 +1,12 @@
 {% extends "layouts/base.html" %}
-
 {% block title %}
 FenrisBox Detailed table view
 {% endblock %}
+
+<!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 
 {% block content %}
   <!-- Page Content -->
@@ -10,9 +14,89 @@ FenrisBox Detailed table view
     <div class="row">
       <div class="col-lg-12 text-center">
         <h1 class="mt-5">Detailed view of tables</h1>
-        <p class="lead">Add some tables here soon</p>
+        <p class="lead">Searchable tables from datasets generated on the traffic logger and DNS server</p>
       </div>
     </div>
   </div>
 
-{% endblock %}
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+  <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.datatables.net/datetime/1.0.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" rel="stylesheet" type="text/css" />
+  
+  <table id="example" class="display" style="width:100%">
+          <thead>
+              <tr>
+                  <!-- <th>Rowid</th> -->
+                  <th>Name</th>
+                  <th>Alias</th>
+
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <!-- <th>Rowid</th> -->
+                  <th>Name</th>
+                  <th>Alias</th>
+              </tr>
+          </tfoot>
+      </table>
+  
+  <script>
+  $(function(){
+  address = "http://127.0.0.1:8000/api/heroes";
+  // address = "dummydata.json";
+  
+  $.ajax({
+    url: address,
+    type: "GET",
+    content: "application/json;charset=utf-8",
+    dataType: "json",
+    success: function (result) {
+  
+      console.log("result: " + result);
+  
+      $.each(result, function (key, item) {
+  
+        console.log("KEY: " + key + " , ITEM: " + item);
+  
+        // $.each(item, function(key2, item2) {
+  
+        //   console.log("KEY2: " + key2 + " , ITEM2: " + item2);
+  
+         var html = '';
+         html += '<tr>';
+        //  html += '<td></td>';
+         html += '<td>' + item.name + '</td>';
+         html += '<td>' + item.alias + '</td>';
+        // // html += '<td>' + item2.position + '</td>';
+        // // html += '<td>' + item2.email + '</td>';
+        // // html += '<td>' + item2.office + '</td>';
+        // // html += '<td>' + item2.extn + '</td>';
+        // // html += '<td>' + item2.age + '</td>';
+        // // html += '<td>' + item2.salary + '</td>';
+        // // html += '<td>' + item2.start_date + '</td>';
+         html += '</tr>';
+  
+           $("#example tbody").append(html);
+          });
+          // });
+  
+      $("#example").DataTable({
+        destroy: true,
+        dom: 'Bfrtip',
+        columDefs: [{
+          visible: false
+        }]
+      });
+  
+    }
+  });
+  });
+  </script>
+<!-- {% endblock %} -->

@@ -26,7 +26,7 @@ SECRET_KEY = '&t#u23kq5smmw5m%7w2($%e8zvsxwf))t(i*@i@i-kvei3rb&0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.50.222"]
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0"]
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'dashboard.apps.DashboardConfig',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -80,9 +82,9 @@ WSGI_APPLICATION = 'loganalyzer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fenrisdb',
-        'USER': 'testdev',
-        'PASSWORD': 'testdev',
+        'NAME': 'fenris_web',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
