@@ -28,6 +28,7 @@ Or you can search "Powershell", rightclick and ``Run as administrator``.
 
 4. In powershell type ``Python`` and check if it is installed.
 if it isn`t installed run ``pip install python``.
+5. Install ``django-datatables-view``, in Powershell type ``pip install django-datatables-view``
 
 5. To interact with the database using Python we also need to install a database interpreter, in Powershell run ``pip install psycopg2``. This is a Python specific PostgreSQL adapter for issuing commands to  the database.
 6. We are also going to need Git in order to clone the repo. Depending if your  using an IDE like Visual studio code or your using powershell. If you're using VScode you import the Git module. If you're using windows and powershell follow this guide ``https://www.develves.net/blogs/asd/articles/using-git-with-powershell-on-windows-10/``
