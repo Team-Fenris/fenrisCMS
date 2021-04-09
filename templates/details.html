@@ -24,7 +24,7 @@ FenrisBox Detailed table view
   <table id="example" class="display" style="width:100%">
           <thead>
               <tr>
-                  <!-- <th>Rowid</th> -->
+                  <th>Rowid</th>
                   <th>dst_addr</th>
                   <th>dst_port</th>
                   <th>icmpv4</th>
@@ -36,116 +36,63 @@ FenrisBox Detailed table view
                   <th>ipv4_raw</th>
                   <!-- <th>direction</th>
                   <th>ipv4_chksum</th> -->
-
               </tr>
           </thead>
           <tbody>
           </tbody>
           <tfoot>
               <tr>
-                  <!-- <th>Rowid</th> -->
-                  <!-- <th>Name</th>
-                  <th>Alias</th> -->
+             <!--
+                <th>Rowid</th>
+                <th>dst_addr</th>
+                <th>dst_port</th>
+                <th>icmpv4</th>
+                <th>icmpv6</th>
+                <th>interface</th>
+                <th>ipv4_chksum</th>
+                <th>src_addr</th>
+                <th>src_port</th>
+                <th>ipv4_raw</th>
+              -->
               </tr>
           </tfoot>
       </table>
   
-  <script>
+  <script type="text/javascript">
+$(document).ready(function() {
+    //$(function(){
+    address = "http://" + location.hostname + ":8000/api/pcap";
+    datatbl = $("#example").DataTable();
+    $.ajax({
+        url: address,
+        type: "GET",
+        content: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (key, item) {
+                datatbl.row.add( [
+                    item.id,
+                    item.dst_addr,
+                    item.dst_port,
+                    item.icmpv4,
+                    item.icmpv6,
+                    item.interface,
+                    item.ipv4_chksum,
+                    item.src_addr,
+                    item.src_port,
+                    item.ipv4_raw
+                ]).draw( false );
+            });
 
-  /* Formatting function for row details - modify as you need */
-// function format ( d ) {
-//     // `d` is the original data object for the row
-//     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-//         '<tr>'+
-//             '<td>ipv4_df:</td>'+
-//             '<td>'+d.ipv4_df+'</td>'+
-//         '</tr>'+
-//         '<tr>'+
-//             '<td>ipv4_ecn:</td>'+
-//             '<td>'+d.ipv4_ecn+'</td>'+
-//         '</tr>'+
-//         '<tr>'+
-//             '<td>ipv4_evil:</td>'+
-//             '<td>'+d.ipv4_evil+'</td>'+
-//         '</tr>'+
-//     '</table>';
-// }  
-
-   $(function(){
-   address = "http://127.0.0.1:8000/api/pcap";
-//    address = "dummydata.json";
-  
-   $.ajax({
-     url: address,
-     type: "GET",
-     content: "application/json;charset=utf-8",
-     dataType: "json",
-     success: function (result) {
-  
-       console.log("result: " + result);
-  
-       $.each(result, function (key, item) {
-  
-         console.log("KEY: " + key + " , ITEM: " + item);
-  
-  //       // $.each(item, function(key2, item2) {
-  
-  //       //   console.log("KEY2: " + key2 + " , ITEM2: " + item2);
-  
-          var html = '';
-          html += '<tr>';
-          html += '<td>' + item.id + '</td>';
-          html += '<td>' + item.dst_addr + '</td>';
-          html += '<td>' + item.dst_port + '</td>';
-          html += '<td>' + item.icmpv4 + '</td>';
-          html += '<td>' + item.icmpv6 + '</td>';
-          html += '<td>' + item.interface + '</td>';
-          html += '<td>' + item.ipv4_chksum + '</td>';
-  //        html += '<td>' + item.ipv4_chksum + '</td>';
-  //       //  html += '<td>' + item.ipv4_df + '</td>';
-  //       //  html += '<td>' + item.ipv4_diff_serv + '</td>';
-  //       //  html += '<td>' + item.ipv4_ecn + '</td>';
-  //       //  html += '<td>' + item.ipv4_evil + '</td>';
-  //       //  html += '<td>' + item.ipv4_flags + '</td>';
-  //       //  html += '<td>' + item.ipv4_frag_offset+ '</td>';
-  //       //  html += '<td>' + ipv4_header_len + '</td>';
-          html += '<td>' + item.src_addr + '</td>';
-          html += '<td>' + item.src_port + '</td>';
-          html += '<td>' + item.ipv4_raw + '</td>';
-          html += '</tr>';
-  
-            $("#example tbody").append(html);
-           });
-           
-      // Add event listener for opening and closing details
-    //   $('#example tbody').on('click', 'td.details-control', function () {
-    //     var tr = $(this).closest('tr');
-    //     var row = table.row( tr );
- 
-    //     if ( row.child.isShown() ) {
-    //         // This row is already open - close it
-    //         row.child.hide();
-    //         tr.removeClass('shown');
-    //     }
-    //     else {
-    //         // Open this row
-    //         row.child( format(row.data()) ).show();
-    //         tr.addClass('shown');
-    //     }
-    // } );
-
-      //  $("#example").DataTable({
-      //    destroy: true,
-      //    dom: 'Bfrtip',
-      //    columDefs: [{
-      //      visible: false
-      //    }]
-        
-    },
-});
-
+            $("#example").DataTable({
+                destroy: true,
+                dom: 'Bfrtip',
+                columDefs: [{
+                    visible: false
+                }]
+            });
+         }
     });
-      
-    
+});
   </script>
  <!-- {% endblock %} -->
