@@ -43,7 +43,7 @@ class FenrisApi:
 if __name__ == "__main__":
 
     # Set configuration parameters for testing and initialize object
-    api_pcap_url = 'http://192.168.50.222:8000/api/pcap/'
+    api_pcap_url = 'http://127.0.0.1:8000/api/pcap/'
     api_token = 'FsaGHWa312t19jgSG2qa2agsSG82gsnag383gSn2aSgn218Gxawg'
     api = FenrisApi(api_pcap_url, api_token)
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         'is_inbound': 'inb',
         'is_loopback': 'false',
         'is_outbound': 'true',
-        'payload': '\xc0\xff\x00\x00\x1d',
+        # 'payload': '\xc0\xff\x00\x00\x1d',
         'raw': 'raw text',
         'src_addr': adr2,
         'src_port': port1,

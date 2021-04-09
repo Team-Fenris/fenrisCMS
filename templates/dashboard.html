@@ -12,7 +12,7 @@ FenrisBox Dashboard
   <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.datatables.net/datetime/1.0.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
   <link href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" rel="stylesheet" type="text/css" />
-
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <!-- Page Content -->
   <div class="container">
     <div class="row">
@@ -23,125 +23,12 @@ FenrisBox Dashboard
     </div>
   </div>
 
-  <h2>Upload Json</h2>
+  <!-- <h2>Upload Json</h2>
   <form method="post" enctype="application/x-www-form-urlencoded">
     {% csrf_token %}
     <input type="file" name="json">
     <button type="submit">Upload json</button>
-  </form>
-    
-  <!-- <table id="example" class="display" style="width:100%">
-    <thead>
-        <tr>
-            <th>Rowid</th>  -->
-            <!-- <th>Direction</th>
-            <th>dst_addr</th>
-            <th>dst_port</th>
-            <th>icmpv4</th>
-            <th>icmpv6</th>
-            <th>interface</th>
-            <th>ipv4</th>
-            <th>ipv6</th>
-            <th>is_inbound</th>
-            <th>is_loopback</th>
-            <th>is_outbound</th>
-            <th>payload</th>
-            <th>raw</th>
-            <th>src_addr</th>
-            <th>src_port</th>
-            <th>tcp</th>
-            <th>udp</th>
-            <th>wd_addr</th>
-
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-    <tfoot>
-        <tr> -->
-            <!-- <th>Rowid</th> -->
-            <!-- <th>Direction</th>
-            <th>dst_addr</th>
-            <th>dst_port</th>
-            <th>icmpv4</th>
-            <th>icmpv6</th>
-            <th>interface</th>
-            <th>ipv4</th>
-            <th>ipv6</th>
-            <th>is_inbound</th>
-            <th>is_loopback</th>
-            <th>is_outbound</th>
-            <th>payload</th>
-            <th>raw</th>
-            <th>src_addr</th>
-            <th>src_port</th>
-            <th>tcp</th>
-            <th>udp</th>
-            <th>wd_addr</th>
-        </tr>
-    </tfoot>
-</table>
-  <script>
-  $(function(){ -->
-    <!-- address = "http://127.0.0.1:8000/api/pcap/";
-    // address = "dummydata.json";
-    
-    $.ajax({
-      url: address,
-      type: "GET",
-      content: "application/json;charset=utf-8",
-      dataType: "json",
-      success: function (result) {
-    
-        console.log("result: " + result);
-    
-        $.each(result, function (key, item) {
-    
-          console.log("KEY: " + key + " , ITEM: " + item);
-    
-          // $.each(item, function(key2, item2) {
-    
-          //   console.log("KEY2: " + key2 + " , ITEM2: " + item2);
-    
-           var html = '';
-           html += '<tr>';
-          //  html += '<td></td>';
-           html += '<td>' + item.direction + '</td>';
-           html += '<td>' + item.dst_addr + '</td>'; -->
-           <!-- html += '<td>' + item.dst_port + '</td>'; -->
-           <!-- html += '<td>' + item.icmpv4 + '</td>';
-           html += '<td>' + item.ismpv6 + '</td>';
-           html += '<td>' + item.interface + '</td>';
-           html += '<td>' + item.ipv4 + '</td>';
-           html += '<td>' + item.ipv6 + '</td>';
-           html += '<td>' + item.is_inboud + '</td>';
-           html += '<td>' + item.is_loopback + '</td>';
-           html += '<td>' + item.is_outbound + '</td>';
-           html += '<td>' + item.payload + '</td>';
-           html += '<td>' + item.raw + '</td>';
-           html += '<td>' + item.scr_addr + '</td>';
-           html += '<td>' + item.src_port + '</td>';
-           html += '<td>' + item.tcp + '</td>';
-           html += '<td>' + item.udp + '</td>';
-           html += '<td>' + item.wd_addr + '</td>';
-           html += '</tr>';
-    
-             $("#example tbody").append(html);
-            });
-            // });
-    
-        $("#example").DataTable({
-          destroy: true,
-          dom: 'Bfrtip',
-          columDefs: [{
-            visible: false
-          }]
-        });
-    
-      }
-    });
-    });
-    </script> --> -->
+  </form> -->
 
 <p>
 

@@ -3,11 +3,11 @@
 FenrisBox Detailed table view
 {% endblock %}
 
-<!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
-
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 {% block content %}
   <!-- Page Content -->
   <div class="container">
@@ -19,20 +19,23 @@ FenrisBox Detailed table view
     </div>
   </div>
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-  <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.datatables.net/datetime/1.0.2/css/dataTables.dateTime.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css" rel="stylesheet" type="text/css" />
+ 
   
   <table id="example" class="display" style="width:100%">
           <thead>
               <tr>
                   <!-- <th>Rowid</th> -->
-                  <th>Name</th>
-                  <th>Alias</th>
+                  <th>dst_addr</th>
+                  <th>dst_port</th>
+                  <th>icmpv4</th>
+                  <th>icmpv6</th>
+                  <th>interface</th>
+                  <th>ipv4_chksum</th>
+                  <th>src_addr</th>
+                  <th>src_port</th>
+                  <th>ipv4_raw</th>
+                  <!-- <th>direction</th>
+                  <th>ipv4_chksum</th> -->
 
               </tr>
           </thead>
@@ -41,62 +44,108 @@ FenrisBox Detailed table view
           <tfoot>
               <tr>
                   <!-- <th>Rowid</th> -->
-                  <th>Name</th>
-                  <th>Alias</th>
+                  <!-- <th>Name</th>
+                  <th>Alias</th> -->
               </tr>
           </tfoot>
       </table>
   
   <script>
-  $(function(){
-  address = "http://127.0.0.1:8000/api/heroes";
-  // address = "dummydata.json";
+
+  /* Formatting function for row details - modify as you need */
+// function format ( d ) {
+//     // `d` is the original data object for the row
+//     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+//         '<tr>'+
+//             '<td>ipv4_df:</td>'+
+//             '<td>'+d.ipv4_df+'</td>'+
+//         '</tr>'+
+//         '<tr>'+
+//             '<td>ipv4_ecn:</td>'+
+//             '<td>'+d.ipv4_ecn+'</td>'+
+//         '</tr>'+
+//         '<tr>'+
+//             '<td>ipv4_evil:</td>'+
+//             '<td>'+d.ipv4_evil+'</td>'+
+//         '</tr>'+
+//     '</table>';
+// }  
+
+   $(function(){
+   address = "http://127.0.0.1:8000/api/pcap";
+//    address = "dummydata.json";
   
-  $.ajax({
-    url: address,
-    type: "GET",
-    content: "application/json;charset=utf-8",
-    dataType: "json",
-    success: function (result) {
+   $.ajax({
+     url: address,
+     type: "GET",
+     content: "application/json;charset=utf-8",
+     dataType: "json",
+     success: function (result) {
   
-      console.log("result: " + result);
+       console.log("result: " + result);
   
-      $.each(result, function (key, item) {
+       $.each(result, function (key, item) {
   
-        console.log("KEY: " + key + " , ITEM: " + item);
+         console.log("KEY: " + key + " , ITEM: " + item);
   
-        // $.each(item, function(key2, item2) {
+  //       // $.each(item, function(key2, item2) {
   
-        //   console.log("KEY2: " + key2 + " , ITEM2: " + item2);
+  //       //   console.log("KEY2: " + key2 + " , ITEM2: " + item2);
   
-         var html = '';
-         html += '<tr>';
-        //  html += '<td></td>';
-         html += '<td>' + item.name + '</td>';
-         html += '<td>' + item.alias + '</td>';
-        // // html += '<td>' + item2.position + '</td>';
-        // // html += '<td>' + item2.email + '</td>';
-        // // html += '<td>' + item2.office + '</td>';
-        // // html += '<td>' + item2.extn + '</td>';
-        // // html += '<td>' + item2.age + '</td>';
-        // // html += '<td>' + item2.salary + '</td>';
-        // // html += '<td>' + item2.start_date + '</td>';
-         html += '</tr>';
+          var html = '';
+          html += '<tr>';
+          html += '<td>' + item.id + '</td>';
+          html += '<td>' + item.dst_addr + '</td>';
+          html += '<td>' + item.dst_port + '</td>';
+          html += '<td>' + item.icmpv4 + '</td>';
+          html += '<td>' + item.icmpv6 + '</td>';
+          html += '<td>' + item.interface + '</td>';
+          html += '<td>' + item.ipv4_chksum + '</td>';
+  //        html += '<td>' + item.ipv4_chksum + '</td>';
+  //       //  html += '<td>' + item.ipv4_df + '</td>';
+  //       //  html += '<td>' + item.ipv4_diff_serv + '</td>';
+  //       //  html += '<td>' + item.ipv4_ecn + '</td>';
+  //       //  html += '<td>' + item.ipv4_evil + '</td>';
+  //       //  html += '<td>' + item.ipv4_flags + '</td>';
+  //       //  html += '<td>' + item.ipv4_frag_offset+ '</td>';
+  //       //  html += '<td>' + ipv4_header_len + '</td>';
+          html += '<td>' + item.src_addr + '</td>';
+          html += '<td>' + item.src_port + '</td>';
+          html += '<td>' + item.ipv4_raw + '</td>';
+          html += '</tr>';
   
-           $("#example tbody").append(html);
-          });
-          // });
-  
-      $("#example").DataTable({
-        destroy: true,
-        dom: 'Bfrtip',
-        columDefs: [{
-          visible: false
-        }]
-      });
-  
-    }
-  });
-  });
+            $("#example tbody").append(html);
+           });
+           
+      // Add event listener for opening and closing details
+    //   $('#example tbody').on('click', 'td.details-control', function () {
+    //     var tr = $(this).closest('tr');
+    //     var row = table.row( tr );
+ 
+    //     if ( row.child.isShown() ) {
+    //         // This row is already open - close it
+    //         row.child.hide();
+    //         tr.removeClass('shown');
+    //     }
+    //     else {
+    //         // Open this row
+    //         row.child( format(row.data()) ).show();
+    //         tr.addClass('shown');
+    //     }
+    // } );
+
+      //  $("#example").DataTable({
+      //    destroy: true,
+      //    dom: 'Bfrtip',
+      //    columDefs: [{
+      //      visible: false
+      //    }]
+        
+    },
+});
+
+    });
+      
+    
   </script>
-<!-- {% endblock %} -->
+ <!-- {% endblock %} -->

@@ -5,8 +5,11 @@ from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'heroes', views.HeroViewSet)
+
 router.register(r'pcap', views.PcapViewSet)
+router.register(r'http', views.HttpViewSet)
+router.register(r'https', views.HttpsViewSet)
+router.register(r'dns', views.DnsViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
