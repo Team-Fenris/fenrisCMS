@@ -11,3 +11,12 @@ def index(request):
 def details(request):
     return render(request, 'details.html')
 
+def dns(request):
+    return render(request, 'dns.html')
+
+def http(request):
+    return render(request, 'http.html')
+
+def https(request):
+    return render(request, 'https.html')
+

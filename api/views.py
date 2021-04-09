@@ -1,10 +1,13 @@
 from django.shortcuts import render
-
-# Create your views here.
 from rest_framework import viewsets
+## imports for file upload ##
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
-from .serializers import PcapSerializer, HttpSerializer, HttpsSerializer, DnsSerializer
-from .models import Pcap, Http, Https, Dns
+from .serializers import PcapSerializer, HttpSerializer, HttpsSerializer, DnsSerializer, FileSerializer
+from .models import Pcap, Http, Https, Dns, File
 
 class PcapViewSet(viewsets.ModelViewSet):
     queryset = Pcap.objects.all().order_by('dst_addr')
@@ -21,6 +24,24 @@ class HttpsViewSet(viewsets.ModelViewSet):
 class DnsViewSet(viewsets.ModelViewSet):
     queryset = Dns.objects.all().order_by('dns')
     serializer_class = DnsSerializer
+
+class FileUploadView(APIView):
+    permission_classes = []
+    http_method_names = ['get', 'head', 'post']
+    parser_class = (FileUploadParser,)
+
+    def post(self, request, *args, **kwargs):
+
+        file_serializer = FileSerializer (data=request.data)
+
+        if file_serializer.is_valid():
+            file_serializer.save()
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        
+
 
 # class AddPcapView(viewsets.ModelViewSet):
 #     form_class = PcapForm

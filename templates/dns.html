@@ -1,0 +1,94 @@
+{% extends "layouts/base.html" %}
+{% block title %}
+FenrisBox Detailed table view
+{% endblock %}
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+{% block content %}
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Detailed view of tables</h1>
+        <p class="lead">Searchable tables from datasets generated on the traffic logger and DNS server</p>
+      </div>
+    </div>
+  </div>
+
+ 
+  
+  <table id="example" class="display" style="width:100%">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>DNS</th>
+                  <th>Query Str</th>
+                  <th>Query Type</th>
+                  <th>Record Type</th>
+                  <th>DNS Reply</th>
+                  <th>Request Time</th>
+                  <th>Fromt host generic ip</th>
+                  <th>From port</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+              <tr>
+             <!--
+                <th>Rowid</th>
+                <th>dst_addr</th>
+                <th>dst_port</th>
+                <th>icmpv4</th>
+                <th>icmpv6</th>
+                <th>interface</th>
+                <th>ipv4_chksum</th>
+                <th>src_addr</th>
+                <th>src_port</th>
+                <th>ipv4_raw</th>
+              -->
+              </tr>
+          </tfoot>
+      </table>
+  
+  <script type="text/javascript">
+$(document).ready(function() {
+    //$(function(){
+    address = "http://" + location.hostname + ":8000/api/dns";
+    datatbl = $("#example").DataTable();
+    $.ajax({
+        url: address,
+        type: "GET",
+        content: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $.each(result, function (key, item) {
+                datatbl.row.add( [
+                    item.id,
+                    item.dns,
+                    item.query_str,
+                    item.query_type,
+                    item.record_type,
+                    item.data_reply,
+                    item.request_time,
+                    item.from_host_generic_ip,
+                    item.from_port,
+                ]).draw( false );
+            });
+
+            $("#example").DataTable({
+                destroy: true,
+                dom: 'Bfrtip',
+                columDefs: [{
+                    visible: false
+                }]
+            });
+         }
+    });
+});
+  </script>
+ <!-- {% endblock %} -->
