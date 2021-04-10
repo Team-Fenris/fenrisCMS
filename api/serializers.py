@@ -1,7 +1,7 @@
 # serializers.py
 from rest_framework import serializers
 
-from .models import Pcap, Http, Https, Dns
+from .models import Pcap, Http, Https, Dns, File
 
 
 class PcapSerializer(serializers.HyperlinkedModelSerializer):
@@ -71,3 +71,8 @@ class DnsSerializer(serializers.HyperlinkedModelSerializer):
             'from_host_generic_ip',
             'from_port',
             )
+
+class FileSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = File
+        fields = "__all__"

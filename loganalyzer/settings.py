@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'dashboard.apps.DashboardConfig',
-    
+    'chartjs',    
     
 ]
 
@@ -124,6 +124,7 @@ USE_L10N = True
 #USE_TZ = False
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -131,3 +132,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+#File upload dirs
+MEDIA_URL = '/datafiles/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'datafiles')
