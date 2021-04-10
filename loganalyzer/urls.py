@@ -22,5 +22,4 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('', include('dashboard.urls')),
     ##File upload
-    path('api/files', FileViews.FileUploadView.as_view()),
 ]

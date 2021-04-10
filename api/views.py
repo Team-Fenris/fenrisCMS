@@ -1,4 +1,4 @@
-from socket import IPV6_CHECKSUM
+# from socket import IPV6_CHECKSUM
 import django
 from django.db.models.query import QuerySet
 from django.shortcuts import render
@@ -6,23 +6,18 @@ from django.shortcuts import render
 
 #from django_serverside_datatable.views import ServerSideDatatableView
 # Create your views here.
-from dnslib import dns
+# from dnslib import dns
 from rest_framework import viewsets
-## imports for file upload ##
-from rest_framework.parsers import FileUploadParser
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
 
-from .serializers import PcapSerializer, HttpSerializer, HttpsSerializer, DnsSerializer, FileSerializer
-from .models import Pcap, Http, Https, Dns, File
+from .serializers import PcapSerializer, HttpSerializer, HttpsSerializer, DnsSerializer
+from .models import Pcap, Http, Https, Dns
 
 # from django.db.models import Sum > def dns_chart()
-from django.db.models import Sum
-from django.views.generic import TemplateView
+# from django.db.models import Sum
+# from django.views.generic import TemplateView
 
 # chartjs.views.lines works. Needed for class LineChartJSONView and Pcap - IPv4 chart in dashbaord.html
-from chartjs.views.lines import BaseLineChartView 
+# from chartjs.views.lines import BaseLineChartView 
 
 
 class PcapViewSet(viewsets.ModelViewSet):
@@ -41,21 +36,6 @@ class DnsViewSet(viewsets.ModelViewSet):
     queryset = Dns.objects.all().order_by('dns')
     serializer_class = DnsSerializer
 
-
-class FileUploadView(APIView):
-    permission_classes = []
-    http_method_names = ['get', 'head', 'post']
-    parser_class = (FileUploadParser,)
-
-    def post(self, request, *args, **kwargs):
-
-        file_serializer = FileSerializer (data=request.data)
-
-        if file_serializer.is_valid():
-            file_serializer.save()
-            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # class AddPcapView(viewsets.ModelViewSet):
 #     form_class = PcapForm
@@ -99,25 +79,25 @@ class FileUploadView(APIView):
 
 ### Line Chart retrieval ###
 ### TODO: Rewrite class LineChartJSONView to retreive data from django. ###
-class LineChartJSONView(BaseLineChartView):
-    def get_labels(self):
-        """Return 7 labels for the x-axis. TODO: change to dst_addr from django.API"""
-        return ["January", "February", "March", "April", "May", "June", "July"]
-        #return render(django.__path__(Pcap.ipv4_packet_len))
+# class LineChartJSONView(BaseLineChartView):
+#     def get_labels(self):
+#         """Return 7 labels for the x-axis. TODO: change to dst_addr from django.API"""
+#         return ["January", "February", "March", "April", "May", "June", "July"]
+#         #return render(django.__path__(Pcap.ipv4_packet_len))
 
-    def get_providers(self):
-        """Return names of datasets. TODO: change to ipv4_flags from django.API"""
-        return ["ipv4_packet_len", "ipv4_flags", "ipv4_ttl"]
-        #return render(django.__path__(Pcap.ipv4_flags))
+#     def get_providers(self):
+#         """Return names of datasets. TODO: change to ipv4_flags from django.API"""
+#         return ["ipv4_packet_len", "ipv4_flags", "ipv4_ttl"]
+#         #return render(django.__path__(Pcap.ipv4_flags))
 
-    def get_data(self):
-        """Return 3 datasets to plot. TODO: change to ipv4_ttl from django.API"""
+#     def get_data(self):
+#         """Return 3 datasets to plot. TODO: change to ipv4_ttl from django.API"""
 
-        return [[75, 44, 92, 11, 44, 95, 35],
-                [41, 92, 18, 3, 73, 87, 92],
-                [87, 21, 94, 3, 90, 13, 65]]
-        #return render(django.__path__(Pcap.ipv4_ttl))
+#         return [[75, 44, 92, 11, 44, 95, 35],
+#                 [41, 92, 18, 3, 73, 87, 92],
+#                 [87, 21, 94, 3, 90, 13, 65]]
+#         #return render(django.__path__(Pcap.ipv4_ttl))
 
 
-line_chart = TemplateView.as_view(template_name='dashboard.html')
-line_chart_json = LineChartJSONView.as_view()
+# line_chart = TemplateView.as_view(template_name='dashboard.html')
+# line_chart_json = LineChartJSONView.as_view()

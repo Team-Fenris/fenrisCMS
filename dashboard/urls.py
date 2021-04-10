@@ -9,6 +9,5 @@ urlpatterns = [
     path('dashboard/http/', views.http),
     path('dashboard/https/', views.https),
 
-
 ]
 

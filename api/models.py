@@ -3,7 +3,7 @@ from django.db import models
 from datetime import datetime
 import base64
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
-import uuid
+
 
 
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
@@ -89,6 +89,3 @@ class Dns(models.Model):
     def __str__(self):
 
         return self.dns
-
-
-

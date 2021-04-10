@@ -24,16 +24,16 @@ FenrisBox Detailed table view
   <table id="example" class="display" style="width:100%">
           <thead>
               <tr>
-                  <th>Rowid</th>
+                  <th>ID</th>
+                  <th>Direction</th>
                   <th>dst_addr</th>
                   <th>dst_port</th>
-                  <th>icmpv4</th>
-                  <th>icmpv6</th>
-                  <th>interface</th>
-                  <th>ipv4_chksum</th>
-                  <th>src_addr</th>
-                  <th>src_port</th>
-                  <th>ipv4_raw</th>
+                  <th>scr_addr</th>
+                  <th>scr_port</th>
+                  <th>protcol</th>
+                  <th>protocol_name</th>
+                  <th>pid</th>
+                  <th>request_timestamp</th>
                   <!-- <th>direction</th>
                   <th>ipv4_chksum</th> -->
               </tr>
@@ -72,15 +72,15 @@ $(document).ready(function() {
             $.each(result, function (key, item) {
                 datatbl.row.add( [
                     item.id,
+                    item.direction,
                     item.dst_addr,
                     item.dst_port,
-                    item.icmpv4,
-                    item.icmpv6,
-                    item.interface,
-                    item.ipv4_chksum,
-                    item.src_addr,
-                    item.src_port,
-                    item.ipv4_raw
+                    item.scr_addr,
+                    item.scr_port,
+                    item.protcol,
+                    item.protocol_name,
+                    item.pid,
+                    item.request_timestamp,
                 ]).draw( false );
             });
 
