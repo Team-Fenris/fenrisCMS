@@ -11,8 +11,8 @@ class Pcap(models.Model):
     # Destination / Source
     dst_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
     dst_port = models.IntegerField(default=0, null=False)
-    src_addr = models.CharField(max_length=15, default=0, null=False)
-    src_port = models.CharField(max_length=5, default=0, null=False)
+    src_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
+    src_port = models.IntegerField(max_length=5, default=0, null=False)
 
     # _data = models.TextField(db_column='payload', null=True)
     # def set_data(self, data):

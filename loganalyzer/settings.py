@@ -25,7 +25,7 @@ SECRET_KEY = '&t#u23kq5smmw5m%7w2($%e8zvsxwf))t(i*@i@i-kvei3rb&0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+CONN_MAX_AGE = None
 ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "192.168.50.222"]
 
 
