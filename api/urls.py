@@ -10,6 +10,7 @@ router.register(r'pcap', views.PcapViewSet)
 router.register(r'http', views.HttpViewSet)
 router.register(r'https', views.HttpsViewSet)
 router.register(r'dns', views.DnsViewSet)
+#router.register(r'pcapdetail', views.PcapItemListView)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
