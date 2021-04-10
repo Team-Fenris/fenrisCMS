@@ -2,6 +2,9 @@
 from django.db import models
 from datetime import datetime
 import base64
+# https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
+import uuid
+
 
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
 # Create your models here.
@@ -13,6 +16,8 @@ class Pcap(models.Model):
     dst_port = models.IntegerField(default=0, null=False)
     src_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
     src_port = models.IntegerField(max_length=5, default=0, null=False)
+    src_addr = models.CharField(max_length=15, default=0, null=False)
+    src_port = models.CharField(max_length=5, default=0, null=False)
 
     # _data = models.TextField(db_column='payload', null=True)
     # def set_data(self, data):
@@ -84,3 +89,6 @@ class Dns(models.Model):
     def __str__(self):
 
         return self.dns
+
+
+

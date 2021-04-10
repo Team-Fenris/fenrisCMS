@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'dashboard.apps.DashboardConfig',
-    
+    'chartjs',    
     
 ]
 
@@ -131,3 +131,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+#File upload dirs
+MEDIA_URL = '/datafiles/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'datafiles')
