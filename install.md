@@ -12,7 +12,10 @@
 2. Run command ``git clone https://github.com/Team-Fenris/fenrisCMS.git``
 3. Run command ``pip install -r requirements.txt``
 4. Open folder in a IDE(preferably)
-
+5. Create a database
+6. Edit database settings in Settings.py
+7. Run ``python manage.py makemigrations``
+8. Run ``python manage.py migrate``
 ### Manuel Windows Python/Git
 
 1. Open powershell as ``admin``.
@@ -55,4 +58,6 @@ And exit out of the postgres shell
 exit
 ```
 4. After the user has been created and access to the user have been given we have to change some settings in the settings.py file.
-
+5. Once the settings have been changed you run these two commands in the main directory 
+```python manage.py makemigrations```
+```python manage.py migrate```
