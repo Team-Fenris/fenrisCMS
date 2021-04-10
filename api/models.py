@@ -5,6 +5,8 @@ import base64
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
 
 
+
+# https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
 # Create your models here.
 class Pcap(models.Model):
     direction = models.CharField(max_length=25, null=True)
@@ -12,6 +14,8 @@ class Pcap(models.Model):
     # Destination / Source
     dst_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
     dst_port = models.IntegerField(default=0, null=False)
+    src_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
+    src_port = models.IntegerField(max_length=5, default=0, null=False)
     src_addr = models.CharField(max_length=15, default=0, null=False)
     src_port = models.CharField(max_length=5, default=0, null=False)
 
@@ -85,4 +89,3 @@ class Dns(models.Model):
     def __str__(self):
 
         return self.dns
-
