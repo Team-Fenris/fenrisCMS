@@ -13,7 +13,7 @@ FenrisBox Detailed table view
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Detailed view of tables</h1>
+        <h1 class="mt-5">Detailed view of PCAP data</h1>
         <p class="lead">Searchable tables from datasets generated on the traffic logger and DNS server</p>
       </div>
     </div>
@@ -41,20 +41,6 @@ FenrisBox Detailed table view
           <tbody>
           </tbody>
           <tfoot>
-              <tr>
-             <!--
-                <th>Rowid</th>
-                <th>dst_addr</th>
-                <th>dst_port</th>
-                <th>icmpv4</th>
-                <th>icmpv6</th>
-                <th>interface</th>
-                <th>ipv4_chksum</th>
-                <th>src_addr</th>
-                <th>src_port</th>
-                <th>ipv4_raw</th>
-              -->
-              </tr>
           </tfoot>
       </table>
   
@@ -75,10 +61,10 @@ $(document).ready(function() {
                     item.direction,
                     item.dst_addr,
                     item.dst_port,
-                    item.scr_addr,
-                    item.scr_port,
-                    item.protcol,
-                    item.protocol_name,
+                    item.src_addr,
+                    item.src_port,
+                    item.protocol,
+                    item.process_name,
                     item.pid,
                     item.request_timestamp,
                 ]).draw( false );
