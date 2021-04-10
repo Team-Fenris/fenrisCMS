@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'dashboard.apps.DashboardConfig',
-    
+    'chartjs',    
     
 ]
 
