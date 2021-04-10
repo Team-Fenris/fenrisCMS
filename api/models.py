@@ -4,39 +4,17 @@ from datetime import datetime
 import base64
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
 
-
-
-# https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
 # Create your models here.
 class Pcap(models.Model):
     direction = models.CharField(max_length=25, null=True)
-
-    # Destination / Source
-    dst_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
-    dst_port = models.IntegerField(default=0, null=False)
-    src_addr = models.GenericIPAddressField(default='255.254.253.252', null=False)
-    src_port = models.IntegerField(max_length=5, default=0, null=False)
-    src_addr = models.CharField(max_length=15, default=0, null=False)
-    src_port = models.CharField(max_length=5, default=0, null=False)
-
-    # _data = models.TextField(db_column='payload', null=True)
-    # def set_data(self, data):
-    #     self._data = base64.encodestring(data)
-
-    # def get_data(self):
-    #     return base64.decodestring(self._data)
-
-    # payload = property(get_data, set_data)
-
+    dst_addr = models.GenericIPAddressField(null=True)
+    dst_port = models.IntegerField(null=True)
+    src_addr = models.GenericIPAddressField(null=True)
+    src_port = models.IntegerField(null=True)
     protocol = models.CharField(max_length=5, null=True)
-
-    # Process
     process_name = models.CharField(max_length=100, null=True)
-    pid = models.PositiveSmallIntegerField(null=True)
-
-    # Time
+    pid = models.IntegerField(null=True)
     request_timestamp = models.DateTimeField(default=datetime.now(), null=True)
-
 
     def __str__(self):
 

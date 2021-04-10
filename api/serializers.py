@@ -13,7 +13,6 @@ class PcapSerializer(serializers.HyperlinkedModelSerializer):
             'dst_port',
             'src_addr',
             'src_port',
-#            'payload',
             'protocol',
             'process_name',
             'pid',

@@ -1,24 +1,20 @@
-# from socket import IPV6_CHECKSUM
+from rest_framework import viewsets
+from .serializers import PcapSerializer, HttpSerializer, HttpsSerializer, DnsSerializer
+from .models import Pcap, Http, Https, Dns
 import django
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-#from django_serverside_datatable.views import ServerSideDatatableView
 
 #from django_serverside_datatable.views import ServerSideDatatableView
-# Create your views here.
 # from dnslib import dns
-from rest_framework import viewsets
-
-from .serializers import PcapSerializer, HttpSerializer, HttpsSerializer, DnsSerializer
-from .models import Pcap, Http, Https, Dns
-
+# from socket import IPV6_CHECKSUM
 # from django.db.models import Sum > def dns_chart()
 # from django.db.models import Sum
 # from django.views.generic import TemplateView
-
 # chartjs.views.lines works. Needed for class LineChartJSONView and Pcap - IPv4 chart in dashbaord.html
 # from chartjs.views.lines import BaseLineChartView 
 
+# Create your views here.
 
 class PcapViewSet(viewsets.ModelViewSet):
     queryset = Pcap.objects.all().order_by('dst_addr')
@@ -35,30 +31,6 @@ class HttpsViewSet(viewsets.ModelViewSet):
 class DnsViewSet(viewsets.ModelViewSet):
     queryset = Dns.objects.all().order_by('dns')
     serializer_class = DnsSerializer
-
-
-# class AddPcapView(viewsets.ModelViewSet):
-#     form_class = PcapForm
-#     template_name = 'add_pcap.html'
-
-#     def get(self, request; *args, **kwargs):
-#         form = self.form_class(initial=self.initial)
-#         return render(request, self.template_name, {'form': form})
-# #        return HttpResponse('result')
-
-#     def post(self, request, *args, **kwargs):
-#         form = self.form.class(request.POST)
-#         if form.is_valid():
-#             return HttpResponseRedirect('/success/')
-
-#         return render(request, self.template_name, {'form': form})
-# uncomment to add POST method.
-# def upload(request):
-#     if request.method == 'POST':
-#         uploaded_file = request.FILES['json']
-#         print(uploaded_file.name)
-#         print(uploaded_file.size)
-#     return render(request, 'dashboard.html')
 
 ### BarChart.html retrieval ###
 
