@@ -4,14 +4,13 @@ from datetime import datetime
 import base64
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
 
-
 # Create your models here.
 class Pcap(models.Model):
     direction = models.CharField(max_length=25, null=True)
     dst_addr = models.GenericIPAddressField(null=True)
-    dst_port = models.IntegerField(default=0, null=False)
+    dst_port = models.IntegerField(null=True)
     src_addr = models.GenericIPAddressField(null=True)
-    src_port = models.CharField(max_length=5, default=0, null=False)
+    src_port = models.IntegerField(null=True)
     protocol = models.CharField(max_length=5, null=True)
     process_name = models.CharField(max_length=100, null=True)
     pid = models.IntegerField(null=True)
@@ -68,4 +67,3 @@ class Dns(models.Model):
     def __str__(self):
 
         return self.dns
-

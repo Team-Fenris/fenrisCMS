@@ -6,7 +6,6 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 
 #from django_serverside_datatable.views import ServerSideDatatableView
-# Create your views here.
 # from dnslib import dns
 # from socket import IPV6_CHECKSUM
 # from django.db.models import Sum > def dns_chart()
@@ -15,6 +14,7 @@ from django.shortcuts import render
 # chartjs.views.lines works. Needed for class LineChartJSONView and Pcap - IPv4 chart in dashbaord.html
 # from chartjs.views.lines import BaseLineChartView 
 
+# Create your views here.
 
 class PcapViewSet(viewsets.ModelViewSet):
     queryset = Pcap.objects.all().order_by('dst_addr')
