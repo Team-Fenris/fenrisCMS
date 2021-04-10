@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'rest_framework',
-    'dashboard.apps.DashboardConfig',
-    'chartjs',    
+    'dashboard.apps.DashboardConfig',   
     
 ]
 
@@ -83,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fenrisdb',
-        'USER': 'testdev',
-        'PASSWORD': 'testdev',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }

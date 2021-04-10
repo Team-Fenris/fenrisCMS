@@ -3,7 +3,7 @@ from django.db import models
 from datetime import datetime
 import base64
 # https://stackoverflow.com/questions/59169700/django-db-utils-integrityerror-duplicate-key-value-violates-unique-constraint-e
-import uuid
+
 
 # Create your models here.
 class Pcap(models.Model):
@@ -85,12 +85,4 @@ class Dns(models.Model):
     def __str__(self):
 
         return self.dns
-
-class File(models.Model):
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    file = models.FileField(blank=False, null=False)
-
-    def __str__(self):
-        return self.file.name
 
