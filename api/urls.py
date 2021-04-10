@@ -3,6 +3,7 @@
 from django.urls import include, path
 from rest_framework import routers
 from . import views
+from rest_framework.views import APIView
 
 from .views import line_chart, line_chart_json
 
@@ -12,6 +13,7 @@ router.register(r'pcap', views.PcapViewSet)
 router.register(r'http', views.HttpViewSet)
 router.register(r'https', views.HttpsViewSet)
 router.register(r'dns', views.DnsViewSet)
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

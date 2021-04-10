@@ -1,6 +1,7 @@
 
 from django.db import models
-
+from datetime import datetime
+import uuid
 # Create your models here.
 class Pcap(models.Model):
     direction = models.CharField(max_length=25, null=True)
@@ -97,7 +98,7 @@ class Http(models.Model):
     accept_encoding = models.CharField(max_length=255, null=True)
     http_connection = models.CharField(max_length=20, null=True)
     upgrade_insec_req = models.BooleanField(null=True)
-    request_timestamp = models.DateTimeField(null=True)
+    request_timestamp = models.DateTimeField(default=datetime.now(), null=True)
 
     def __str__(self):
 
@@ -114,7 +115,7 @@ class Https(models.Model):
     accept_encoding = models.CharField(max_length=255, null=True)
     https_connection = models.CharField(max_length=20, null=True)
     upgrade_insec_req = models.BooleanField(null=True)
-    request_timestamp = models.DateTimeField(null=True)
+    request_timestamp = models.DateTimeField(default=datetime.now(), null=True)
 
     def __str__(self):
 
@@ -133,3 +134,12 @@ class Dns(models.Model):
     def __str__(self):
 
         return self.dns
+
+class File(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    file = models.FileField(blank=False, null=False)
+
+    def __str__(self):
+        return self.file.name
+
