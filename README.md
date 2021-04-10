@@ -15,6 +15,7 @@ Screenshots to be added.
 
 ## Download and Installation
 
+Read [installation manual](install.md) for details.
 
 ## Usage
 
