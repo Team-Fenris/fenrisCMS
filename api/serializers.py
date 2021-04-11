@@ -33,8 +33,7 @@ class HttpSerializer(serializers.HyperlinkedModelSerializer):
             'accept_language',
             'accept_encoding',
             'http_connection',
-            'upgrade_insec_req',
-            'request_timestamp',            
+            'request_timestamp',
             )
 
 class HttpsSerializer(serializers.HyperlinkedModelSerializer):
@@ -51,8 +50,7 @@ class HttpsSerializer(serializers.HyperlinkedModelSerializer):
             'accept_language',
             'accept_encoding',
             'https_connection',
-            'upgrade_insec_req',
-            'request_timestamp',            
+            'request_timestamp',
             )
 
 class DnsSerializer(serializers.HyperlinkedModelSerializer):
