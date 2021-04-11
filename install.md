@@ -171,4 +171,4 @@ Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 ```
 
-You can now request Django on https://<Django-IP>:8000
+You can now request Django on https://{Django-IP}:8000
