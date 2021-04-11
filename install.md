@@ -93,42 +93,40 @@ to
 4.3 Create a new user to work with from django
 
 ```
-CREATE DATABASE fenrisdb;
+postgres=# CREATE DATABASE fenrisdb;
 
-CREATE USER testdev WITH PASSWORD 'testdev';
-```
+postgres=# \c fenrisdb;
 
-Next we will give access to the database for the new database and user we created.
+fenrisdb=# CREATE USER testdev WITH PASSWORD 'testdev';
 
-```
-GRANT ALL PRIVILEGES ON DATABASE fenrisdb TO testdev;
+fenrisdb=# GRANT ALL PRIVILEGES ON DATABASE fenrisdb TO testdev;
 ```
 Now that we are done type
 ```
 \q
 ```
-And exit out of the postgres shell
-```
-exit
-```
 
 You should be able to run the following command from the `testdev` user when logged into the Linux terminal:
 
-`psql -d fenrisdb -U testdev`
+```
+testdev@host:~$ psql -d fenrisdb -U testdev
+fenrisdb=> \conninfo
+You are connected to database "fenrisdb" as user "testdev" via socket in "/var/run/postgresql" at port "5432".
+```
 
 When this is up and running, and works, Django can be integrated.
 
-6. Clone the repository
+5. Clone the repository (or extract from archive)
 
 `git clone https://github.com/Team-Fenris/fenrisCMS.git`
 
-7. Install Python libraries
+6. Install Python libraries
 
 `cd fenrisCMS`
 
 `pip3 install -r requirements.txt`
 
-8. Change settings.py
+7. Change settings.py located in the `loganalyzer/` directory
 
 ```
 ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "your-ip-address-here"]
@@ -145,7 +143,7 @@ DATABASES = {
 }
 ```
 
-9. Run migrations to install the Django data to the database
+8. Run migrations to install the Django data to the database
 
 ```
 $ cd fenrisCMS
@@ -155,7 +153,7 @@ testdev@testdev:~/fenrisCMS $ python3 manage.py migrate
 
 On the prompt if any fields are changed, choose *no* on all.
 
-10. Run the Django server
+9. Run the Django server
 
 ```
 testdev@testdev:~/fenrisCMS $ python3 manage.py runserver 0.0.0.0:8000
