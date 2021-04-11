@@ -30,7 +30,6 @@ class Http(models.Model):
     accept_language = models.CharField(max_length=255, null=True)
     accept_encoding = models.CharField(max_length=255, null=True)
     http_connection = models.CharField(max_length=20, null=True)
-    upgrade_insec_req = models.BooleanField(null=True)
     request_timestamp = models.DateTimeField(default=datetime.now(), null=True)
 
     def __str__(self):
@@ -47,7 +46,6 @@ class Https(models.Model):
     accept_language = models.CharField(max_length=255, null=True)
     accept_encoding = models.CharField(max_length=255, null=True)
     https_connection = models.CharField(max_length=20, null=True)
-    upgrade_insec_req = models.BooleanField(null=True)
     request_timestamp = models.DateTimeField(default=datetime.now(), null=True)
 
     def __str__(self):
