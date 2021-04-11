@@ -61,3 +61,114 @@ exit
 5. Once the settings have been changed you run these two commands in the main directory 
 ```python manage.py makemigrations```
 ```python manage.py migrate```
+
+
+### Linux installation
+When installing Linux (e.g. Ubuntu), create a user called `testdev`.
+
+1. Install packages needed.
+
+`sudo apt install python3-pip python3-psycopg2 git`
+
+2. Install packages
+
+`sudo apt-get update && apt-get install apache2 git python3 postgresql postgresql-contrib postgresql libpq-dev postgresql-client python3-dev libpq-dev curl ca-certificates python3-pip -y`
+
+3. Edit `pg_hba.conf`
+Change from this line:
+
+`local   all             postgres                                peer`
+
+to
+
+`local   all             postgres,testdev                                peer`
+
+4. Start PostgreSQL
+`sudo systemctl start postgresql`
+
+4.1 We are using PostgreSQL so you need to install that aswell. Its very simple, go to ``https://www.postgresqltutorial.com/install-postgresql/`` and follow their guide.
+
+4.2 Once completed with the postgres installation open up `psql` and login to your database and we're going to create a new user.
+
+4.3 Create a new user to work with from django
+
+```
+CREATE DATABASE fenrisdb;
+
+CREATE USER testdev WITH PASSWORD 'testdev';
+```
+
+Next we will give access to the database for the new database and user we created.
+
+```
+GRANT ALL PRIVILEGES ON DATABASE fenrisdb TO testdev;
+```
+Now that we are done type
+```
+\q
+```
+And exit out of the postgres shell
+```
+exit
+```
+
+You should be able to run the following command from the `testdev` user when logged into the Linux terminal:
+
+`psql -d fenrisdb -U testdev`
+
+When this is up and running, and works, Django can be integrated.
+
+6. Clone the repository
+
+`git clone https://github.com/Team-Fenris/fenrisCMS.git`
+
+7. Install Python libraries
+
+`cd fenrisCMS`
+
+`pip3 install -r requirements.txt`
+
+8. Change settings.py
+
+```
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "your-ip-address-here"]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'fenrisdb',
+        'USER': 'testdev',
+        'PASSWORD': 'testdev',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
+
+9. Run migrations to install the Django data to the database
+
+```
+$ cd fenrisCMS
+testdev@testdev:~/fenrisCMS $ python3 manage.py makemigrations
+testdev@testdev:~/fenrisCMS $ python3 manage.py migrate
+```
+
+On the prompt if any fields are changed, choose *no* on all.
+
+10. Run the Django server
+
+```
+testdev@testdev:~/fenrisCMS $ python3 manage.py runserver 0.0.0.0:8000
+```
+
+Your Django server should now be up and running, and you should get a message like:
+
+```
+System check identified 8 issues (0 silenced).
+April 11, 2021 - 16:44:05
+Django version 3.2, using settings 'loganalyzer.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+```
+
+You can now request Django on https://<Django-IP>:8000
