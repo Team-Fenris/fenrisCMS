@@ -8,6 +8,6 @@ urlpatterns = [
     path('dashboard/dns/', views.dns),
     path('dashboard/http/', views.http),
     path('dashboard/https/', views.https),
-
+    path('', views.index, name='index'),
 ]
 
