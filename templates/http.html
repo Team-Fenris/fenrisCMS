@@ -3,13 +3,6 @@
 FenrisCMS Detailed table view
 {% endblock %}
 
-<!--
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
--->
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 {% block content %}
   <!-- Page Content -->
   <div class="container">
@@ -20,8 +13,6 @@ FenrisCMS Detailed table view
       </div>
     </div>
   </div>
-
- 
   
   <table id="example" class="display" style="width:100%">
           <thead>
@@ -43,24 +34,12 @@ FenrisCMS Detailed table view
           </tbody>
           <tfoot>
               <tr>
-                <!-- <th>ID</th>
-                <th>Https</th>
-                <th>Https-path</th>
-                <th>Request Version</th>
-                <th>Host generic IP</th>
-                <th>User Agent</th>
-                <th>Accept</th>
-                <th>Accept Language</th>
-                <th>Accept Encoding</th>
-                <th>Https Connection</th>
-                <th>Request Timestamp</th> -->
               </tr>
           </tfoot>
       </table>
   
   <script type="text/javascript">
 $(document).ready(function() {
-    //$(function(){
     address = "http://" + location.hostname + ":8000/api/http";
     datatbl = $("#example").DataTable();
     $.ajax({
@@ -96,4 +75,3 @@ $(document).ready(function() {
     });
 });
   </script>
- <!-- {% endblock %} -->

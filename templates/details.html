@@ -3,14 +3,6 @@
 FenrisCMS Detailed table view
 {% endblock %}
 
-
-<!--
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
--->
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 {% block content %}
   <!-- Page Content -->
   <div class="container">
@@ -37,8 +29,6 @@ FenrisCMS Detailed table view
                   <th>Process Name</th>
                   <th>Process ID</th>
                   <th>Request Time</th>
-                  <!-- <th>direction</th>
-                  <th>ipv4_chksum</th> -->
               </tr>
           </thead>
           <tbody>
@@ -49,7 +39,6 @@ FenrisCMS Detailed table view
   
   <script type="text/javascript">
 $(document).ready(function() {
-    //$(function(){
     address = "http://" + location.hostname + ":8000/api/pcap";
     datatbl = $("#example").DataTable();
     $.ajax({
@@ -84,4 +73,3 @@ $(document).ready(function() {
     });
 });
   </script>
- <!-- {% endblock %} -->
