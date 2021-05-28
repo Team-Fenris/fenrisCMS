@@ -11,7 +11,7 @@ A CMS for viewing data retrieved from [tfcctrl](https://github.com/Team-Fenris/t
 Other components can be used as well.
 
 ## Installation guide
-See [here](docs/installation.md) for more information.
+See [here](installation.md) for more information.
 
 
 ## Misc
